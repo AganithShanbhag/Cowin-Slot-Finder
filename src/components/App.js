@@ -10,6 +10,8 @@ import ForgotPassword from "./ForgotPassword"
 import UpdateProfile from "./UpdateProfile"
 import Home from './Home'
 import Footer from "./Footer"
+import About from "./About"
+import Work from "./Work.js"
 
 function App() {
   return (
@@ -21,6 +23,9 @@ function App() {
             <PrivateRoute exact path="/" component={Home} />
             <PrivateRoute path="/dashboard" component={Dashboard} />
             <PrivateRoute path="/update-profile" component={UpdateProfile} />
+            <PrivateRoute path="/about" component={About} />
+            <PrivateRoute path="/work" component={Work} />
+
             <Route path="/signup" component={Signup} />
             <Route path="/login" component={Login} />
             <Route path="/forgot-password" component={ForgotPassword} />

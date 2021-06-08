@@ -1,22 +1,20 @@
 import React from "react";
-import Heading from "./Heading";
-import { Container, Row, Col, Alert} from "react-bootstrap";
 import Info from "./Info";
-import { districtId, centerId, submit } from "./Info";
-
+import Heading from './Heading'
+import { Container, Row, Col, Alert, ListGroup, ListGroupItem, Jumbotron, Spinner } from "react-bootstrap";
 
 export default class Home extends React.Component {
-
-
-
     constructor(props) {
         super(props);
 
         this.state = {
             isLoading: true,
             District: "",
-            Manipal: "",
-            TimeCaptured: ""
+            Center: "",
+            TimeCaptured: "",
+            distId: 286,
+            centerId: 370108,
+            doseNo: 1,
         };
     }
 
@@ -36,22 +34,36 @@ export default class Home extends React.Component {
             tomorrow.getFullYear();
         console.log(date);
         const url =
-            (await "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=286&date=") +
-            date;
+            (await "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=") +
+            this.state.distId +
+            "&date=" +
+            "06-06-2021";
+        //date;
+        //console.log(url);
+        //  console.log("centerid" + this.state.centerId);
         const response = await fetch(url);
         const Data = await response.json();
-        // console.log("data ", Data);
+        //console.log("data ", Data);
         this.setState({ District: Data.sessions, isLoading: false });
-        this.findManipal();
-        this.Check(this.state.Manipal.available_capacity_dose1);
+        this.findCenter();
+        if (parseInt(this.state.doseNo) === 1) {
+            this.Check(this.state.Center.available_capacity_dose1);
+        } else {
+            this.Check(this.state.Center.available_capacity_dose2);
+        }
+        //console.log("Checking for dose" + typeof this.state.doseNo)
         setTimeout(() => this.fetchInterval(), 10000);
     }
 
-    findManipal = () => {
+    findCenter = () => {
+        // console.log("length" + this.state.District.length);
         for (var i = 0; i < this.state.District.length; i++) {
-            if (this.state.District[i].center_id === 560919) {
+            console.log(typeof this.state.District[i].center_id);
+            console.log("centerId is" + typeof this.state.centerId);
+            if (this.state.District[i].center_id === parseInt(this.state.centerId)) {
                 //370108 for uphc
-                this.setState({ Manipal: this.state.District[i] });
+                this.setState({ Center: this.state.District[i] });
+                console.log("match");
                 break;
             }
         }
@@ -74,71 +86,67 @@ export default class Home extends React.Component {
 
     render() {
         return (
-            <Container style={{ backgroundColor: 'whitesmoke' }}>
+            <div style={{ margin: "20px", fontFamily: "Oswald, San-serif" }}>
                 <Heading />
-                <br />
-                <br />
-                <br />
-                <h5>
+
+                <br/>
+
+                <h4>
                     Once the Vaccine is Available, you will be alerted by a sound. Keep
                     the tab running...
-                </h5>
+                </h4>
                 <br />
+
+
                 <br />
 
+                <div style={{ background: "whitesmoke" }}>
+                    {this.state.isLoading ? (
+                        <Spinner animation="border" role="status">
+                            <span className="sr-only">{""}</span>
+                        </Spinner>
+                    ) : (
+                        <div className="mt-2">
+                            <Row>
+                                <Col xs='12' sm='12' md='6'>
+                                    <Info
+                                        updateInfo={(distId, centerId, doseNo) => {
+                                            this.setState({ distId });
+                                            this.setState({ centerId });
+                                            this.setState({ doseNo });
+                                        }}
+                                    />
+                                </Col>
 
-                {this.state.isLoading ? (
-                    <p>Loading...</p>
-                ) : (
+                                <Col xs='12' sm='12' md='6'>
+                                    <div>
 
+                                        <ListGroup variant="flush" >
+                                            <p>{""}</p>
+                                            <ListGroup.Item style={{ backgroundColor: '#FF6F61' }}>Center Name: {this.state.Center.name}</ListGroup.Item>
+                                            <ListGroup.Item style={{ backgroundColor: '' }}>Center Id: {this.state.Center.center_id}</ListGroup.Item>
+                                            <ListGroup.Item style={{ backgroundColor: '#2ECC40' }}>Vaccine:{" "}{this.state.Center.vaccine}</ListGroup.Item>
+                                            <ListGroup.Item style={{ backgroundColor: '#01FF70' }}>Fee type:{" "}{this.state.Center.fee_type}</ListGroup.Item>
 
-                    <div>
-                        <Row>
-                            <Col>
-                                    <Info  districtId  = {this.state.districtId}/>
-                            </Col>
-
-                            <Col>
-                            <div>
-                                    <h2>Name: {this.state.Manipal.name}</h2>
-                                    <br />
-                                    <h3>Center Id: {this.state.Manipal.center_id}</h3>
-                                    <br />
-                                    <h4>Center Address: {this.state.Manipal.address}</h4>
-                                    <br />
-
-                                    <h5>
-                                        Available Capacity Dose1:{" "}
-                                        {this.state.Manipal.available_capacity_dose1}
-                                    </h5>
-                                    <br />
-                                    <br />
-
-                                    <h4 style={{ color: "red" }}>
-                                        Last Captured: {this.state.TimeCaptured}
-                                    </h4>
-                                </div>
-
-                            </Col>
-                         </Row>  
-
-                         
-                         {
-                                <Alert variant="success" className="m-5"  >
-                                    This is an alert—check it out!
-                                </Alert>
-                         }
-                                   
-
-                    </div>
-
-                )}
-               
-
-            </Container>
+                                            <ListGroup.Item>Available Capacity: {this.state.Center.available_capacity}</ListGroup.Item>
+                                            <ListGroup.Item style={{ backgroundColor: '#7FDBFF' }}>Available Capacity Dose 1:{" "}{this.state.Center.available_capacity_dose1}</ListGroup.Item>
+                                            <ListGroup.Item style={{ backgroundColor: '#39CCCC' }}>Available Capacity Dose 2:{" "}{this.state.Center.available_capacity_dose2}</ListGroup.Item>
+                                        </ListGroup>
+                                        <br />
+                                        <p>Center Address:{this.state.Center.address}</p>
+                                        <p>Last Captured: {this.state.TimeCaptured}</p>
+                                        <br />
+                                    </div>
+                                </Col>
+                            </Row>
 
 
+                        </div>
 
+
+                    )}
+                </div>
+            </div>
         );
     }
 }
