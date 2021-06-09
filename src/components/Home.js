@@ -38,7 +38,6 @@ export default class Home extends React.Component {
             this.state.distId +
             "&date=" + date;
         //console.log(url);
-        //  console.log("centerid" + this.state.centerId);
         const response = await fetch(url);
         const Data = await response.json();
         //console.log("data ", Data);
@@ -49,7 +48,10 @@ export default class Home extends React.Component {
         } else {
             this.Check(this.state.Center.available_capacity_dose2);
         }
-        //console.log("Checking for dose" + typeof this.state.doseNo)
+
+        console.log("District Id: " + this.state.distId);
+        console.log("Center Id: " + this.state.centerId);
+        console.log("Checking for dose: " + this.state.doseNo)
         setTimeout(() => this.fetchInterval(), 10000);
     }
 
@@ -61,7 +63,7 @@ export default class Home extends React.Component {
             if (this.state.District[i].center_id === parseInt(this.state.centerId)) {
                 //370108 for uphc
                 this.setState({ Center: this.state.District[i] });
-                console.log("match");
+                console.log("Center Found");
                 break;
             }
         }
