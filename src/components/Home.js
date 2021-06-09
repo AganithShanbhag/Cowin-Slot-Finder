@@ -1,7 +1,7 @@
 import React from "react";
 import Info from "./Info";
 import Heading from './Heading'
-import { Row, Col,ListGroup, Spinner } from "react-bootstrap";
+import { Row, Col, ListGroup, Spinner } from "react-bootstrap";
 
 export default class Home extends React.Component {
     constructor(props) {
@@ -36,9 +36,7 @@ export default class Home extends React.Component {
         const url =
             (await "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=") +
             this.state.distId +
-            "&date=" +
-            "06-06-2021";
-        //date;
+            "&date=" + date;
         //console.log(url);
         //  console.log("centerid" + this.state.centerId);
         const response = await fetch(url);
@@ -89,7 +87,7 @@ export default class Home extends React.Component {
             <div style={{ margin: "20px", fontFamily: "Oswald, San-serif" }}>
                 <Heading />
 
-                <br/>
+                <br />
 
                 <h4>
                     Once the Vaccine is Available, you will be alerted by a sound. Keep
