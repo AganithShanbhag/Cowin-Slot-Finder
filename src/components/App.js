@@ -33,12 +33,14 @@ function App() {
         </AuthProvider>
       </Router>
 
-      <Footer/>
+      <Footer />
 
     </>
 
-    
+
   )
 }
 
 export default App
+
+//*supress warnings
