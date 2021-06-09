@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import { Nav,NavDropdown,Navbar,Button } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Nav, NavDropdown, Navbar, Button, Alert } from 'react-bootstrap'
 import { useHistory } from "react-router-dom"
 import { useAuth } from "../contexts/AuthContext"
 
@@ -23,6 +23,8 @@ const Title = {
 
 export default function Heading() {
 
+
+    const [error, setError] = useState(" ")
     const { currentUser, logout } = useAuth()
     const history = useHistory()
 
@@ -43,7 +45,7 @@ export default function Heading() {
 
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Navbar.Brand href="/">
-                    <img width="45px" style={{margin:'5px 10px'}} src="https://image.flaticon.com/icons/png/512/3022/3022142.png" alt="virus-illustration" />{" "}
+                    <img width="45px" style={{ margin: '5px 10px' }} src="https://image.flaticon.com/icons/png/512/3022/3022142.png" alt="virus-illustration" />{" "}
                     <span style={Title}>Cowin-Slot-Finder</span>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -61,6 +63,7 @@ export default function Heading() {
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
+            {error && <Alert variant="danger">{error}</Alert>}
         </>
     )
 }
