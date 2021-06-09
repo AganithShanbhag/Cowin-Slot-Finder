@@ -1,25 +1,8 @@
 import React, {useState} from 'react'
-import { Row, Col,Nav,NavDropdown,Navbar,Button } from 'react-bootstrap'
-import { Link, useHistory } from "react-router-dom"
+import { Nav,NavDropdown,Navbar,Button } from 'react-bootstrap'
+import { useHistory } from "react-router-dom"
 import { useAuth } from "../contexts/AuthContext"
 
-
-const navbar = {
-listStyleType: 'none',
-margin: '0',
-padding: '0',
-overflow: 'hidden',
-backgroundColor: '#333'
-}
-
-const navitem = {
-float: 'left',
-color:'white',
-display: 'block',
-textAlign: 'center',
-padding: '14px 16px',
-textDecoration: 'none',
-}
 
 
 const LinkStyle = {
@@ -28,13 +11,6 @@ const LinkStyle = {
     textDecoration: 'none',
     borderBottom: '1px solid #D0D0D0',
     textShadow: '2px 1px 3px #A8A8A8'
-}
-const headingStyle = {
-    backgroundColor: 'black',
-    padding: '20px',
-    // display: 'flex',
-    // justifyContent: 'space-between' 
-    overflow: 'hidden'
 }
 
 const Title = {
@@ -47,8 +23,6 @@ const Title = {
 
 export default function Heading() {
 
-
-    const [error, setError] = useState("")
     const { currentUser, logout } = useAuth()
     const history = useHistory()
 
@@ -90,3 +64,6 @@ export default function Heading() {
         </>
     )
 }
+
+
+//*supress warnings

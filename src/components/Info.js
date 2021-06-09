@@ -1,6 +1,5 @@
-import React, { createContext, useState } from "react";
+import React, { useState } from "react";
 import { Container, Row, Col, Alert, Button } from "react-bootstrap";
-import { propTypes } from "react-bootstrap/esm/Image";
 
 const InfoBar = {
     backgroundColor: "#001f3f",

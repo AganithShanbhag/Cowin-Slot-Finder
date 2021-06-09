@@ -1,7 +1,7 @@
 import React from "react";
 import Info from "./Info";
 import Heading from './Heading'
-import { Container, Row, Col, Alert, ListGroup, ListGroupItem, Jumbotron, Spinner } from "react-bootstrap";
+import { Row, Col,ListGroup, Spinner } from "react-bootstrap";
 
 export default class Home extends React.Component {
     constructor(props) {
