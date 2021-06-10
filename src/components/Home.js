@@ -15,6 +15,7 @@ export default class Home extends React.Component {
             distId: 286,
             centerId: 370108,
             doseNo: 1,
+            min_age: 18,
         };
     }
 
@@ -52,6 +53,7 @@ export default class Home extends React.Component {
         console.log("District Id: " + this.state.distId);
         console.log("Center Id: " + this.state.centerId);
         console.log("Checking for dose: " + this.state.doseNo)
+        console.log("min age set to:" + this.state.min_age)
         setTimeout(() => this.fetchInterval(), 10000);
     }
 
@@ -62,11 +64,15 @@ export default class Home extends React.Component {
             //console.log("centerId is" + typeof this.state.centerId);
             if (this.state.District[i].center_id === parseInt(this.state.centerId)) {
                 //370108 for uphc
-                if (parseInt(this.state.District[i].min_age_limit) === 45) { continue; }
+                if (parseInt(this.state.District[i].min_age_limit) === parseInt(this.state.min_age)) {
 
-                this.setState({ Center: this.state.District[i] });
-                console.log("Center Found");
-                break;
+                    this.setState({ Center: this.state.District[i] });
+                    console.log("Center Found");
+                    break;
+
+                }
+
+
             }
         }
     };
@@ -112,10 +118,11 @@ export default class Home extends React.Component {
                             <Row>
                                 <Col xs='12' sm='12' md='6'>
                                     <Info
-                                        updateInfo={(distId, centerId, doseNo) => {
+                                        updateInfo={(distId, centerId, doseNo, min_age) => {
                                             this.setState({ distId });
                                             this.setState({ centerId });
                                             this.setState({ doseNo });
+                                            this.setState({ min_age })
                                         }}
                                     />
                                 </Col>

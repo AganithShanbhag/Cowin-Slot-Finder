@@ -27,6 +27,7 @@ const infoText = {
 export default function Info(props) {
     const [districtId, setDistrictId] = useState(286);
     const [centerId, setCenterId] = useState(370108);
+    const [min_age, setMin_Age] = useState(18);
     const [doseNo, setDoseNo] = useState(1);
 
     const [showalert, setShowAlert] = useState(false);
@@ -34,6 +35,10 @@ export default function Info(props) {
     const doseOption = (e) => {
 
         setDoseNo(e.target.value)
+    }
+
+    const minAge = (e) => {
+        setMin_Age(e.target.value)
     }
 
     if (showalert) {
@@ -92,9 +97,9 @@ export default function Info(props) {
             </Row>
 
             <Row className="mt-4">
-                <Col>
+                <Col className="mb-3">
 
-                    <p style={infoText}>Enter Dose Number:</p>
+                    <p style={infoText}>Enter Dose Number-</p>
                     <select value={doseNo} onChange={doseOption}>
                         <option value="1">Dose 1</option>
                         <option value="2">Dose 2</option>
@@ -102,12 +107,20 @@ export default function Info(props) {
 
                 </Col>
 
+                <Col className="mb-3">
+                    <p style={infoText}>Enter Minimum Age-</p>
+                    <select value={min_age} onChange={minAge}>
+                        <option value="18">18</option>
+                        <option value="45">45</option>
+                    </select>
+                </Col>
+
                 <Col>
                     <p style={infoText}>Submit Details</p>
                     <button
                         style={buttonStyle}
                         onClick={() => {
-                            props.updateInfo(districtId, centerId, doseNo)
+                            props.updateInfo(districtId, centerId, doseNo, min_age)
                             setShowAlert(true)
                         }
 
