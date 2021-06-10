@@ -62,6 +62,8 @@ export default class Home extends React.Component {
             //console.log("centerId is" + typeof this.state.centerId);
             if (this.state.District[i].center_id === parseInt(this.state.centerId)) {
                 //370108 for uphc
+                if (parseInt(this.state.District[i].min_age_limit) === 45) { continue; }
+
                 this.setState({ Center: this.state.District[i] });
                 console.log("Center Found");
                 break;
