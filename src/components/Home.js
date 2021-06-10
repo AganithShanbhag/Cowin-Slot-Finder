@@ -58,8 +58,8 @@ export default class Home extends React.Component {
     findCenter = () => {
         // console.log("length" + this.state.District.length);
         for (var i = 0; i < this.state.District.length; i++) {
-            console.log(typeof this.state.District[i].center_id);
-            console.log("centerId is" + typeof this.state.centerId);
+            //console.log(typeof this.state.District[i].center_id);
+            //console.log("centerId is" + typeof this.state.centerId);
             if (this.state.District[i].center_id === parseInt(this.state.centerId)) {
                 //370108 for uphc
                 this.setState({ Center: this.state.District[i] });
