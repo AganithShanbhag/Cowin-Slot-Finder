@@ -33,6 +33,7 @@ const li = {
     color: 'black',
     textShadow: '1px 1px 3px white',
     background: 'rgba(253, 254, 254, 0.05)',
+    textDecoration:'none'
 
 }
 
@@ -70,12 +71,12 @@ export default function Heading() {
                 <div style={logo_image}>
                     <img src="https://image.flaticon.com/icons/png/512/3022/3022151.png" alt="" width="80" />
                 </div>
-                <p style={{ float: 'left', margin: '12px', padding: '10px', fontSize: '30px', fontFamily: `'Oleo Script', cursive` }}>Cowin-Sot-Finder</p>
+                <p style={{ float: 'left', margin: '12px', padding: '10px', fontSize: '30px', fontFamily: `'Oleo Script', cursive` }}>Cowin-Slot-Finder</p>
                 <nav style={nav}>
                     <ul style={ul}>
                         <Link to="/about" style={li}>AboutUs</Link>
                         <Link to="/work" style={li}>Working</Link>
-                        <Link style={li}>Email:{" "}{currentUser.email}</Link>
+                        <Link to="/dashboard" style={{ padding:'10px',textDecoration: 'none', color:'#C04000',whiteSpace: 'nowrap' }}>Email:{" "}{currentUser.email}</Link>
                         <Button className="btn btn-sm" variant="link" onClick={handleLogout} style={logoutButton}>
                             Log Out
                         </Button>
