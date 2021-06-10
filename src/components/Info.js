@@ -89,7 +89,7 @@ export default function Info(props) {
                     <p style={infoText}>Enter Center Id:</p>
                     <input
                         type="number"
-                        placeholder="Enter Id: ex:560919"
+                        placeholder="Enter Id: ex:719703"
                         style={inputStyle}
                         onChange={(event) => setCenterId(event.target.value)}
                     />

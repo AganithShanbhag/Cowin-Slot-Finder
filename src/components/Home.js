@@ -13,7 +13,7 @@ export default class Home extends React.Component {
             Center: "",
             TimeCaptured: "",
             distId: 286,
-            centerId: 370108,
+            centerId: 719703,
             doseNo: 1,
             min_age: 18,
         };
