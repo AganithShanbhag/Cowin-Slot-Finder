@@ -25,8 +25,8 @@ const infoText = {
 };
 
 export default function Info(props) {
-    const [districtId, setDistrictId] = useState(286);
-    const [centerId, setCenterId] = useState(370108);
+    const [districtId, setDistrictId] = useState(null);
+    const [centerId, setCenterId] = useState(null);
     const [min_age, setMin_Age] = useState(18);
     const [doseNo, setDoseNo] = useState(1);
 
