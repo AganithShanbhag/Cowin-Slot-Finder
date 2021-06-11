@@ -12,8 +12,8 @@ export default class Home extends React.Component {
             District: "",
             Center: "",
             TimeCaptured: "",
-            distId: 286,
-            centerId: 719703,
+            distId: null,
+            centerId: null,
             doseNo: 1,
             min_age: 18,
         };
